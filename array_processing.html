@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>Array Processing</title>
+	<script type="text/javascript">
+
+		/*
+		* the "for...in" does not work correctly for Arrays, 
+		* as it will iterate over all Array properties and methods. Thus,
+		* you should use "for...in" only for iterating over object properties.
+		* Otherwise, stick to "for(i=0; i<something; i++)"
+		*/
+
+		var array = [10,20,30,40,50];
+		Array.prototype.remove = function(element){
+			var index, length = this.length;
+			var isFound = false;
+			for(index=0; index<length; index++){
+				if(isFound){
+					this[index-1] = this[index];
+				}
+				else if(this[index] === element){
+					isFound = true;
+				}
+			}
+			if(isFound){
+				this.length--;
+			}
+			return isFound;
+		}
+		console.log("before", array);
+		array.remove(120);
+		console.log("after", array);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
